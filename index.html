@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Every Blade Mowing | Lawncare & Gardening Services</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green: #3a8f3f;
+      --green-light: #f0f7f0;
+      --green-dark: #2d6e31;
+      --charcoal: #2c2c2c;
+      --grey: #666;
+      --white: #ffffff;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--white);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-logo img {
+      height: 52px;
+      width: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .nav-brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+    .nav-brand span {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--grey);
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--green-dark) !important; color: var(--white) !important; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 90px 24px 80px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      opacity: 0.92;
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+    .btn-white {
+      background: var(--white);
+      color: var(--green-dark);
+      border: none;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.7);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* TRUST BAR */
+    .trust-bar {
+      background: var(--green-light);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+    .trust-item .icon { font-size: 1.2rem; }
+
+    /* SECTIONS */
+    section { padding: 72px 24px; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--grey);
+      font-size: 1rem;
+      margin-bottom: 48px;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* SERVICES */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--green-light);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      border: 1px solid #d4ebd4;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(58,143,63,0.12); }
+    .service-icon { font-size: 2rem; margin-bottom: 14px; }
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .service-card p { color: var(--grey); font-size: 0.92rem; line-height: 1.55; margin-bottom: 16px; }
+    .service-price {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 14px;
+      border-radius: 50px;
+    }
+    .service-note {
+      font-size: 0.8rem;
+      color: var(--grey);
+      margin-top: 8px;
+    }
+
+    /* WHY US */
+    #why { background: var(--green-light); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .why-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .why-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { color: var(--grey); font-size: 0.9rem; line-height: 1.55; }
+
+    /* QUOTE FORM */
+    #quote { background: var(--white); }
+    .form-wrap {
+      background: var(--green-light);
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 620px;
+      margin: 0 auto;
+      border: 1px solid #d4ebd4;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 18px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+    input, textarea, select {
+      padding: 12px 14px;
+      border: 1.5px solid #c8e0c8;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--green); }
+    textarea { resize: vertical; min-height: 110px; }
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .form-note { text-align: center; font-size: 0.82rem; color: var(--grey); margin-top: 12px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.85);
+      padding: 48px 24px 32px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+    }
+    .footer-contacts {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .footer-contacts a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .footer-contacts a:hover { color: var(--white); }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 0 auto 20px;
+      max-width: 400px;
+    }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+
+    /* SUCCESS MESSAGE */
+    .success-msg {
+      display: none;
+      background: var(--green);
+      color: white;
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .form-wrap { padding: 32px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .trust-bar { gap: 20px; }
+      .hero { padding: 64px 20px 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div>
+      <div class="nav-brand">Every Blade Mowing<span>Lawncare & Gardening Services</span></div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#quote" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Reliable, Local<br>Lawncare.</h1>
+  <p>Professional mowing, edging and garden maintenance for Sydney's North Shore. Servicing 2068 and surrounds.</p>
+  <div class="hero-btns">
+    <a href="#quote" class="btn btn-white">Get a Free Quote</a>
+    <a href="tel:0413268664" class="btn btn-outline">📞 Call Us</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="icon">📍</span> North Shore, Sydney</div>
+  <div class="trust-item"><span class="icon">✅</span> Free Quotes</div>
+  <div class="trust-item"><span class="icon">⭐</span> Local & Reliable</div>
+  <div class="trust-item"><span class="icon">🌿</span> Mowing & Gardening</div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">What We Offer</div>
+    <h2>Services & Pricing</h2>
+    <p class="section-sub">All quotes are obligation-free. Final price depends on yard size and condition — we'll always confirm before we start.</p>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">🌿</div>
+        <h3>Lawn Mowing & Edging</h3>
+        <p>A full cut and edge for a clean, professional finish every time. Includes blow-off of paths and driveways.</p>
+        <span class="service-price">From $60</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">✂️</div>
+        <h3>Whipper Snipping</h3>
+        <p>Tight corners, fence lines and tricky spots your mower can't reach — tidied up properly.</p>
+        <span class="service-price">Included with mow</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🌱</div>
+        <h3>Weeding & Garden Tidy</h3>
+        <p>General weeding and garden bed maintenance to keep things looking neat between bigger jobs.</p>
+        <span class="service-price">Available as an add-on</span>
+        <p class="service-note">Ask us when booking</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🍂</div>
+        <h3>Lawn Cleanup</h3>
+        <p>Overgrown or neglected lawn? We'll get it back to a great standard ready for regular maintenance.</p>
+        <span class="service-price">POA</span>
+        <p class="service-note">Contact us for a custom quote</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-label">Why Every Blade</div>
+    <h2>The Local Difference</h2>
+    <p class="section-sub">We're not a big faceless company. We're your neighbour, and we treat your yard like our own.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">📍</div>
+        <h3>Locally Based</h3>
+        <p>We live and work in the North Shore. No long waits, no distant contractors — just someone nearby who shows up.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>Reliable Every Time</h3>
+        <p>We show up when we say we will. Regular clients get priority scheduling so your lawn is always sorted.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3>Easy to Deal With</h3>
+        <p>Call, text or email — we'll get back to you quickly. No complicated booking systems, just a real person.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE FORM -->
+<section id="quote">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 40px;">
+      <div class="section-label">Get Started</div>
+      <h2>Get a Free Quote</h2>
+      <p class="section-sub" style="margin: 0 auto;">Fill in your details and we'll get back to you within 24 hours with a price.</p>
+    </div>
+    <div class="form-wrap">
+      <form id="quoteForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="John Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="04XX XXX XXX" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="address">Property Address</label>
+          <input type="text" id="address" placeholder="123 Example St, Roseville" required />
+        </div>
+        <div class="form-group">
+          <label for="service">Service Interested In</label>
+          <select id="service">
+            <option value="">Select a service...</option>
+            <option>Lawn Mowing & Edging</option>
+            <option>Weeding & Garden Tidy</option>
+            <option>Lawn Cleanup (overgrown)</option>
+            <option>Regular Maintenance (fortnightly)</option>
+            <option>Not sure — just want a quote</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Anything else we should know?</label>
+          <textarea id="message" placeholder="e.g. lawn size, current condition, how often you'd like visits..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send My Quote Request →</button>
+        <p class="form-note">We'll reply within 24 hours. No obligation, no pressure.</p>
+      </form>
+      <div class="success-msg" id="successMsg">
+        ✅ Thanks! We'll be in touch within 24 hours with your quote.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Every Blade Mowing</div>
+  <div class="footer-tagline">Lawncare & Gardening Services · North Shore, Sydney</div>
+  <div class="footer-contacts">
+    <a href="tel:0413268664">📞 0413 268 664</a>
+    <a href="mailto:everyblademowing@gmail.com">✉️ everyblademowing@gmail.com</a>
+  </div>
+  <hr class="footer-divider" />
+  <div class="footer-copy">© 2026 Every Blade Mowing. All rights reserved.</div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Form submit (opens mailto as fallback — replace with Formspree for real submissions)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value;
+
+    const subject = encodeURIComponent(`Quote Request from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nService: ${service}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:everyblademowing@gmail.com?subject=${subject}&body=${body}`;
+
+    document.getElementById('quoteForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
